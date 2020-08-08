@@ -8,7 +8,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: aspell help
       shell: bash
-    - run: echo "Nice to meet you!"
-      shell: pwsh
