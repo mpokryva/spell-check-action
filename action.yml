@@ -1,8 +1,12 @@
 name: 'Hello World'
 description: 'Greet someone'
+inputs:
+  check-file:
+    description: "HTML File to check for spelling mistakes."
+    required: true
+
 runs:
   using: "composite"
   steps:
-    - run: |
-        ls
+    - run: cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique
       shell: bash
