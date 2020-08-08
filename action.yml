@@ -8,5 +8,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo ${{ inputs.check-file }}
+    - run: cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique
       shell: bash
