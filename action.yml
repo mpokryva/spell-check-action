@@ -1,12 +1,11 @@
 name: 'Hello World'
 description: 'Greet someone'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  text:
+    description: 'The input text'
     required: true
-    default: 'World'
 runs:
   using: "composite"
   steps:
-    - run: aspell help
+    - run: echo  ${{ inputs.text }}.
       shell: bash
