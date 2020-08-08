@@ -13,8 +13,9 @@ runs:
   steps:
     - run: |
         diff=$(comm -23 <(cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique) <(sort --unique ${{inputs.ignore-file}}))
-        echo $diff
         if [[ $diff ]]; then
+          echo "Spelling mistakes detected!"
+          echo $diff
           exit 1
         else
           exit 0
