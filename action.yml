@@ -6,10 +6,17 @@ inputs:
     required: true
   ignore-file:
     description: "Newline-separated file containing words to ignore."
-    required: false
+    required: true
 
 runs:
   using: "composite"
   steps:
-    - run: comm -23 <(cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique) <(sort ${{inputs.ignore-file}})
+    - run: |
+        diff=$(comm -23 <(cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique) <(sort --unique ${{inputs.ignore-file}}))
+        echo $diff
+        if [[ $diff ]]; then
+          exit 1
+        else
+          exit 0
+        fi
       shell: bash
