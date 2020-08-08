@@ -4,9 +4,12 @@ inputs:
   check-file:
     description: "HTML File to check for spelling mistakes."
     required: true
+  ignore-file:
+    description: "Newline-separated file containing words to ignore."
+    required: false
 
 runs:
   using: "composite"
   steps:
-    - run: cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique
+    - run: comm -23 <(cat ${{inputs.check-file}} | aspell list --mode=html | sort --unique) <(sort ${{inputs.ignore-file}})
       shell: bash
