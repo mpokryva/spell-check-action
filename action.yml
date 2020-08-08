@@ -1,11 +1,8 @@
 name: 'Hello World'
 description: 'Greet someone'
-inputs:
-  text:
-    description: 'The input text'
-    required: true
 runs:
   using: "composite"
   steps:
-    - run: ./arg_spell.sh '${{ inputs.text }}'
+    - run: |
+        ls
       shell: bash
