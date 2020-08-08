@@ -7,5 +7,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo hi
+    - run: ./arg_spell.sh '${{ inputs.text }}'
       shell: bash
